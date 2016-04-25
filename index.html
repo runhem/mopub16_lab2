@@ -1,56 +1,32 @@
 <!DOCTYPE html>
 <html>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <title>Shake that App!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-<!-- added two library files to do youtube embeds easy as pie -->
-<script src="https://www.youtube.com/iframe_api"></script>
-<script src="angular-youtube-embed.js"></script>
+    <!-- added two library files to do youtube embeds easy as pie -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="angular-youtube-embed.js"></script>
+    <script src="videoCtrl.js"></script>
+</head>
 
-<body ng-app="myApp" ng-controller="karateCtrl">
-<h2>My karate List</h2>
+<body ng-app="myApp" ng-controller="videoCtrl">
+<h2>Welcome to the awesome video app!</h2>
 <!-- form to add new entires -->
-<form ng-submit="karateAdd()">
-    <input type="text" ng-model="karateInput" size="50" placeholder="Add New video">
+<form ng-submit="addVideo()">
+    <input type="text" ng-model="videoInput" size="50" placeholder="Add New video">
     <input type="submit" value="Add New">
 </form>
 </br>
 <!-- list entries -->
-<div ng-repeat="x in karateList">
-    <input type="checkbox" ng-model="x.done" /> <span ng-bind="x.karateText"></span>
+<div ng-repeat="x in videoList">
+   <input type="checkbox" ng-model="x.done" /> <span ng-bind="x.videoText"></span>
 </div>
 
-<p><button ng-click="remove()">Remove marked video</button></p>
+<p><button ng-click="removeVideo()">Remove marked video</button></p>
 
 <!-- You can use 'youtube-video' as an element or attribute. -->
 <youtube-video video-id="theBestVideo"></youtube-video>
 
-<script>
-// adding the youtube module to our application
-var app = angular.module('myApp', ['youtube-embed']); 
-app.controller('karateCtrl', function($scope) 
-    {
-// This is a hard-coded list, normally you’d proably use
-// local storage (store) and/or persistant cookies 
-    $scope.karateList = [{karateText:'Rika Usama', done:false}, {karateText:'Jesse Enkamp', done:false}];
-    $scope.karateAdd = function() 
-        {
-        $scope.karateList.push({karateText:$scope.karateInput, done:false});
-        $scope.karateInput = ""; //empty the input
-        };
-
-    $scope.remove = function() 
-        {
-        var oldList = $scope.karateList;
-        $scope.karateList = [];
-        angular.forEach(oldList, function(x) 
-            {
-            if (!x.done) $scope.karateList.push(x);
-            });
-        };
- 
- $scope.theBestVideo = 'TyX2nGbAWgs';
-
-});
-</script>
 </body>
 </html>
