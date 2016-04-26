@@ -20,9 +20,12 @@ app.controller('videoCtrl', function($scope)
             if (!x.done) $scope.videoList.push(x);
             });
         };
- 
- $scope.theBestVideo = 'IsdCGQbbd8k';
 
 
+$scope.video=[
+    {id: 'OX4UCZHDbzk', title: 'Locka med strumpor', rating: 5, category: "strumpor", comments: []},
+    {id: 'FFxnhnEe3CY', title: 'How not to locka håret', rating: 4, category: "fail", comments: []},
+    {id: 's9g4krSCYVM', title: 'Locka med plattång', rating: 2, category: "perfekt", comments: []}
+];
 
 });
