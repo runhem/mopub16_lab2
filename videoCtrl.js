@@ -21,11 +21,60 @@ app.controller('videoCtrl', function($scope)
             });
         };
 
+    $scope.addComment = function(comment, videoId){
+        for(i in $scope.videos){
+            if($scope.videos[i].id === videoId){
+                $scope.videos[i].comments.push(comment);
+            }
+        }
+    }   
 
-$scope.video=[
-    {id: 'OX4UCZHDbzk', title: 'Locka med strumpor', rating: 5, category: "strumpor", comments: []},
-    {id: 'FFxnhnEe3CY', title: 'How not to locka håret', rating: 4, category: "fail", comments: []},
-    {id: 's9g4krSCYVM', title: 'Locka med plattång', rating: 2, category: "perfekt", comments: []}
+    $scope.addRating = function(rating, videoId){
+        for(i in $scope.videos){
+            if($scope.videos[i].id === videoId){
+                $scope.videos[i].rating.push(rating);
+                $scope.setRating($scope.video[i]);
+            }
+        }
+    }
+
+    $scope.setRating = function(video){
+        var ratingSum = 0;
+        for(i in video.rating){
+            ratingSum += video.rating[j];
+        }
+        var ratingValue = ratingSum /= ratingSum.length;
+        video.ratingSum = ratingValue;
+        ratingValue = 0;
+    }
+
+
+    $scope.addVideo = function(videoId, videoTitle, videoCategory){
+        var video = {"id": videoId, "title":videoTitle, "rating": [], "ratingSum": 0, "category": videoCategory, "comments":[]};
+        $scope.video.push(video);
+    }
+
+    $scope.getVideo = function(videoId){
+        for (j in $scope.videos){
+            if($scope.videos[j].id === videoId){
+                $scope.videoRightNow = $scope.video[j];
+            }
+        }
+    }
+
+    $scope.removeVideo = function(videoId){
+        for(i in $scope.videos){
+            if($scope.videos.id === videoId){
+                $scope.video.splice(i,1);
+            }
+        }
+    }
+
+
+$scope.videos=[
+    {"id": 'OX4UCZHDbzk', "title": 'Locka med strumpor', "rating": [], "ratingSum": 0, "category": "strumpor", "comments": []},
+    {"id": 'FFxnhnEe3CY', "title": 'How not to locka håret', "rating": [],"ratingSum": 0, "category": "fail", "comments": []},
+    {"id": 's9g4krSCYVM', "title": 'Locka med plattång', "rating": [],"ratingSum": 0, "category": "perfekt", "comments": []}
 ];
 
 });
