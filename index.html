@@ -13,7 +13,7 @@
 <body ng-app="myApp" ng-controller="videoCtrl">
 <h2>Welcome to the awesome video app!</h2>
 <!-- form to add new entires -->
-<!-- <form ng-submit="addVideo()">
+<form ng-submit="addVideo()">
     <input type="text" ng-model="videoInput" size="50" placeholder="Add New video">
     <input type="submit" value="Add New">
 </form>
@@ -24,7 +24,6 @@
 </div>
 
 <p><button ng-click="removeVideo()">Remove marked video</button></p>
-</head>
 
 <!-- You can use 'youtube-video' as an element or attribute. -->
 <body ng-app="myApp" ng-controller="videoCtrl">
@@ -36,15 +35,15 @@
 
 			<youtube-video video-id="video.id"></youtube-video>
 
-			<button type="button" ng-click="addRating(1, video.id)">1</button>
-			<button type="button" ng-click="addRating(2, video.id)">2</button>
-			<button type="button" ng-click="addRating(3, video.id)">3</button>
-			<button type="button" ng-click="addRating(4, video.id)">4</button>
-			<button type="button" ng-click="addRating(5, video.id)">5</button>
+			<button type="button" ng-click="addRating(1, video)">1</button>
+			<button type="button" ng-click="addRating(2, video)">2</button>
+			<button type="button" ng-click="addRating(3, video)">3</button>
+			<button type="button" ng-click="addRating(4, video)">4</button>
+			<button type="button" ng-click="addRating(5, video)">5</button>
 
   			Comment: <input type="text" ng-model="comment"><br>
   			<input type="submit" value="Add comment" ng-click="addComment(comment, video.id)">
-  			<p>Comments: {{video.comments}}</p>
+  			<div ng-repeat="comment in video.comments"><p>Comment: {{comment}}<button type="button" ng-click="removeComment($index,video)">X</button></p></div>
 	</div>
 </div>
 

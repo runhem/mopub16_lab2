@@ -4,7 +4,7 @@ app.controller('videoCtrl', function($scope)
 
 // This is a hard-coded list, normally you’d proably use
 // local storage (store) and/or persistant cookies 
-    $scope.videoList = [{videoText:'Rika Usama', done:false}, {videoText:'Jesse Enkamp', done:false}];
+    $scope.videoList = [];
     $scope.addVideo = function() 
         {
         $scope.videoList.push({videoText:$scope.videoInput, done:false});
@@ -28,24 +28,22 @@ app.controller('videoCtrl', function($scope)
             }
         } 
     }   
-$scope.addRating = function(rating, videoId){
+$scope.addRating = function(rating, video){
         var ratingCount = 0;
-        for(i in $scope.videos){
-            if($scope.videos[i].id === videoId){
-                $scope.videos[i].rating.push(rating);  
-            }
-            for(j in $scope.videos[i].rating){
-                ratingCount += $scope.videos[i].rating[j];
-            } 
-            $scope.videos[i].ratingSum = ratingCount /= ratingCount.length; 
-        }
+        video.rating.push(rating);
+        for(j in video.rating){
+            ratingCount = ratingCount + video.rating[j];
+        } 
+        ratingCount = ratingCount / (video.rating.length);
+        video.ratingSum = Math.round(ratingCount);         
     }
 
 
-    $scope.addVideo = function(videoId, videoTitle, videoCategory){
-        var video = {"id": videoId, "title":videoTitle, "rating": [], "ratingSum": 0, "category": videoCategory, "comments":[]};
-        $scope.video.push(video);
-    }
+
+    // $scope.addVideoToLibrary = function(videoId, videoTitle, videoCategory){
+    //     var video = {"id": videoId, "title":videoTitle, "rating": [], "ratingSum": 0, "category": videoCategory, "comments":[]};
+    //     $scope.video.push(video);
+    // }
 
     $scope.getVideo = function(videoId){
         for (j in $scope.videos){
@@ -55,14 +53,17 @@ $scope.addRating = function(rating, videoId){
         }
     }
 
-    $scope.removeVideo = function(videoId){
-        for(i in $scope.videos){
-            if($scope.videos.id === videoId){
-                $scope.video.splice(i,1);
-            }
-        }
-    }
+    // $scope.removeVideoFromLibrary = function(videoId){
+    //     for(i in $scope.videos){
+    //         if($scope.videos.id === videoId){
+    //             $scope.video.splice(i,1);
+    //         }
+    //     }
+    // }
 
+ $scope.removeComment = function(index,video){
+        video.comments.splice(index,1);
+   }
 
 $scope.videos=[
     {"id": 'OX4UCZHDbzk', "title": 'Locka med strumpor', "rating": [], "ratingSum": 0, "category": "strumpor", "comments": []},
