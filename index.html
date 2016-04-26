@@ -6,36 +6,16 @@
 
     <!-- added two library files to do youtube embeds easy as pie -->
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="angular-youtube-embed.js"></script>
+    <script src="app.js"></script>
     <script src="videoCtrl.js"></script>
+    <script src="angular-youtube-embed.js"></script>
+
+
 </head>
 
-<body ng-app="myApp" ng-controller="videoCtrl">
+<!-- <body ng-app="myApp" ng-controller="videoCtrl"> -->
 <h2>Welcome to the awesome video app!</h2>
-
-<!-- form to add new entires -->
-<form ng-submit="addVideo()">
-    <input type="text" ng-model="videoInput" size="50" placeholder="Add New video">
-    <input type="submit" value="Add New">
-</form>
-</br>
-<!-- list entries -->
-<div ng-repeat="x in videoList">
-   <input type="checkbox" ng-model="x.done" /> <span ng-bind="x.videoText"></span>
-</div>
-
-<p><button ng-click="removeVideo()">Remove marked video</button></p>
-
-<!-- You can use 'youtube-video' as an element or attribute. -->
-<div class="col-md-12" ng-repeat="video in videos">
-	<div class="row">
-		<div class="col-md-3" id="video.title">
-			<h2>{video.title}</h2>
-			<youtube-video video-id={{video.id}}></youtube-video>
-		</div>
-	</div>
-</div>
-
+<div ng-view></div>
 
 </body>
 </html>
