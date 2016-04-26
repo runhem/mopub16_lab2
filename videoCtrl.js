@@ -75,6 +75,7 @@ $scope.videos=[
     {"id": 'OX4UCZHDbzk', "title": 'Locka med strumpor', "rating": [], "ratingSum": 0, "category": "strumpor", "comments": []},
     {"id": 'FFxnhnEe3CY', "title": 'How not to locka håret', "rating": [],"ratingSum": 0, "category": "fail", "comments": []},
     {"id": 's9g4krSCYVM', "title": 'Locka med plattång', "rating": [],"ratingSum": 0, "category": "perfekt", "comments": []}
+
 ];
 
 });
