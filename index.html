@@ -5,17 +5,57 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
     <!-- added two library files to do youtube embeds easy as pie -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="app.js"></script>
-    <script src="videoCtrl.js"></script>
+     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="angular-youtube-embed.js"></script>
-
-
+    <script src="videoCtrl.js"></script>
 </head>
 
-<!-- <body ng-app="myApp" ng-controller="videoCtrl"> -->
+<body ng-app="myApp" ng-controller="videoCtrl">
 <h2>Welcome to the awesome video app!</h2>
-<div ng-view></div>
+<!-- form to add new entires -->
+<!-- <form ng-submit="addVideo()">
+    <input type="text" ng-model="videoInput" size="50" placeholder="Add New video">
+    <input type="submit" value="Add New">
+</form>
+</br>
+<!-- list entries -->
+<div ng-repeat="x in videoList">
+   <input type="checkbox" ng-model="x.done" /> <span ng-bind="x.videoText"></span>
+</div>
+
+<p><button ng-click="removeVideo()">Remove marked video</button></p>
+</head>
+
+<!-- You can use 'youtube-video' as an element or attribute. -->
+<body ng-app="myApp" ng-controller="videoCtrl">
+
+ <div class="col-md-12" ng-repeat="video in videos">	
+	<div class="row">
+			<h2>{{video.title}}</h2>
+			<p>Rating: {{video.ratingSum}}</p>
+
+			<youtube-video video-id="video.id"></youtube-video>
+
+			<button type="button" ng-click="addRating(1, video.id)">1</button>
+			<button type="button" ng-click="addRating(2, video.id)">2</button>
+			<button type="button" ng-click="addRating(3, video.id)">3</button>
+			<button type="button" ng-click="addRating(4, video.id)">4</button>
+			<button type="button" ng-click="addRating(5, video.id)">5</button>
+
+  			Comment: <input type="text" ng-model="comment"><br>
+  			<input type="submit" value="Add comment" ng-click="addComment(comment, video.id)">
+  			<p>Comments: {{video.comments}}</p>
+	</div>
+</div>
+
+<div class="col-md-12">	
+	<div class="row" ng-repeat="video in videos">
+		<div class="col-md-3" ng-click="">
+			<h2>{{video.title}}</h2>
+			<p>THUMBNAIL HERE</p>
+		</div>
+	</div>
+</div>
 
 </body>
-</html>
+</html> 

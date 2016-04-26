@@ -26,26 +26,19 @@ app.controller('videoCtrl', function($scope)
             if($scope.videos[i].id === videoId){
                 $scope.videos[i].comments.push(comment);
             }
-        }
+        } 
     }   
-
-    $scope.addRating = function(rating, videoId){
+$scope.addRating = function(rating, videoId){
+        var ratingCount = 0;
         for(i in $scope.videos){
             if($scope.videos[i].id === videoId){
-                $scope.videos[i].rating.push(rating);
-                $scope.setRating($scope.video[i]);
+                $scope.videos[i].rating.push(rating);  
             }
+            for(j in $scope.videos[i].rating){
+                ratingCount += $scope.videos[i].rating[j];
+            } 
+            $scope.videos[i].ratingSum = ratingCount /= ratingCount.length; 
         }
-    }
-
-    $scope.setRating = function(video){
-        var ratingSum = 0;
-        for(i in video.rating){
-            ratingSum += video.rating[j];
-        }
-        var ratingValue = ratingSum /= ratingSum.length;
-        video.ratingSum = ratingValue;
-        ratingValue = 0;
     }
 
 
