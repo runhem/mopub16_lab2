@@ -1,0 +1,61 @@
+
+body{
+	background-color: #00b377;
+}
+#container{
+	background-color: #00b377;
+}
+#header{
+	background-color:#00b377;
+	height: 100px;
+	color: white;
+	text-align: center;
+}
+#header h2{
+	padding-top: 30px;
+
+}
+
+#adding{
+	border: 1px solid white;
+	text-align: center;
+}
+
+#adding input{
+	height: 20px;
+	margin-bottom: 0px;
+}
+#allVideos{
+	border: 2px solid white;
+	background-color: #00b377;
+	height:120px;
+	color: white;
+	margin: 0px;
+	padding-bottom: 150px;
+}
+
+.bigVideos{
+	border: 1px solid #00b377;
+	text-align: center;
+
+
+}
+.commentField{
+	height: 120px;
+	background-color: #ccffee;
+	border: 2px solid #00b377;
+	margin-right: 0px;
+	overflow: scroll;
+}
+.comments{
+	background-color: white;
+}
+.ratingButton:hover{
+	background-color: #00b377;
+}
+
+#removeButton{
+	background-color: #ccffee;
+	color: black;
+	border: 1px solid white;
+}

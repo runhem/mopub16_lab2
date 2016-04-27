@@ -2,7 +2,12 @@
 <html>
 <head>
     <title>Shake that App!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- added two library files to do youtube embeds easy as pie -->
      <script src="https://www.youtube.com/iframe_api"></script>
@@ -11,50 +16,78 @@
 </head>
 
 <body ng-app="myApp" ng-controller="videoCtrl">
-<h2>Welcome to the awesome video app!</h2>
-<!-- form to add new entires -->
-<form ng-submit="addVideo()">
-    <input type="text" ng-model="videoInput" size="50" placeholder="Add New video">
-    <input type="submit" value="Add New">
-</form>
-</br>
-<!-- list entries -->
-<div ng-repeat="x in videoList">
-   <input type="checkbox" ng-model="x.done" /> <span ng-bind="x.videoText"></span>
-</div>
+	<div id="container">
+		<div id="header">
+			<h2>Lock'n'roll!</h2>
+			<p>Bring the lock to the roll, while having a stroll</p>
+		</div>
 
-<p><button ng-click="removeVideo()">Remove marked video</button></p>
+		<!-- form to add new entires -->
+		<div id="adding">
+			<form ng-submit="addVideo()">
+			    <input type="text" ng-model="videoInput" size="50" placeholder="Add New video">
+			    <input type="submit" value="Add New">
+			</form>
+		</div>
 
-<!-- You can use 'youtube-video' as an element or attribute. -->
-<body ng-app="myApp" ng-controller="videoCtrl">
+		<!-- list entries -->
+		<div id="allVideos" class="col-md-12">
+			<h2>Your videos</h2>
+			<p>You have {{videoList.length}} videos</p>
+			<div ng-repeat="x in videoList" class="video col-md-2">
+		   		<input type="checkbox" ng-model="x.done" />
+		   		<span ng-bind="x.videoText"></span>
+			</div>
+			<div class="col-md-12">
+				<button id="removeButton" ng-click="removeVideo()">Remove marked video</button>
+			</div>
+		</div>
 
- <div class="col-md-12" ng-repeat="video in videos">	
-	<div class="row">
-			<h2>{{video.title}}</h2>
-			<p>Rating: {{video.ratingSum}}</p>
 
-			<youtube-video video-id="video.id"></youtube-video>
+		<!-- You can use 'youtube-video' as an element or attribute. -->
+		<div class="col-md-4 bigVideos" ng-repeat="video in videos">	
+			<div class="row">
+				<h2>{{video.title}}</h2>
+				<p>Rating: {{video.ratingSum}}</p>
+				<youtube-video video-id="video.id"></youtube-video>
+				<div class="row">
+					<p>Rate this video</p>
 
-			<button type="button" ng-click="addRating(1, video)">1</button>
-			<button type="button" ng-click="addRating(2, video)">2</button>
-			<button type="button" ng-click="addRating(3, video)">3</button>
-			<button type="button" ng-click="addRating(4, video)">4</button>
-			<button type="button" ng-click="addRating(5, video)">5</button>
+					<button class="ratingButton" type="button" ng-click="addRating(1, video)">1</button>
+					<button class="ratingButton" type="button" ng-click="addRating(2, video)">2</button>
+					<button class="ratingButton" type="button" ng-click="addRating(3, video)">3</button>
+					<button class="ratingButton" type="button" ng-click="addRating(4, video)">4</button>
+					<button class="ratingButton" type="button" ng-click="addRating(5, video)">5</button>
+				</div>
+				<div class="row">
+			  		<p>Comment on this video</p>
+			  		<input type="text" ng-model="comment">
+			  		<input type="submit" value="Add comment" ng-click="addComment(comment, video.id)">
+			  	</div>
+			  	<div class="row commentField">
+			  		There are {{video.comments.length}} comments
+			  		<div ng-repeat="comment in video.comments" class="comments">
+			  			<p>Comment: {{comment}}
+			  				<button type="button" ng-click="removeComment($index,video)">X</button>
+			  			</p>
+			  		</div>	
+			  	</div>
+			</div>
+		</div>
 
-  			Comment: <input type="text" ng-model="comment"><br>
-  			<input type="submit" value="Add comment" ng-click="addComment(comment, video.id)">
-  			<div ng-repeat="comment in video.comments"><p>Comment: {{comment}}<button type="button" ng-click="removeComment($index,video)">X</button></p></div>
-	</div>
-</div>
-
-<div class="col-md-12">	
-	<div class="row" ng-repeat="video in videos">
-		<div class="col-md-3" ng-click="">
-			<h2>{{video.title}}</h2>
-			<p>THUMBNAIL HERE</p>
+		<div class="col-md-12">	
+				<div class="row" ng-repeat="video in videos">
+					<div class="col-md-3" ng-click="">
+						<h2>{{video.title}}</h2>
+						<p>THUMBNAIL HERE</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+
 
 </body>
 </html> 
