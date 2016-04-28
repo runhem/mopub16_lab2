@@ -1,16 +1,9 @@
-var app = angular.module('myApp', ['youtube-embed']); 
-app.controller('videoCtrl', function($scope) 
-    {
+var app = angular.module('myApp', ['youtube-embed', 'ngCookies', 'angularLocalStorage']); 
+app.controller('videoCtrl', function($scope, storage){
 
-    $scope.getLocalStorage = function(){
-        $scope.videos=JSON.parse(localStorage.getItem("videos"));
-    }
-    
 
-    $scope.saveLocalStorage = function(){
-            localStorage.removeItem("videos");
-            localStorage.setItem("videos", JSON.stringify($scope.videos));
-    }
+storage.bind($scope, "videos", {defaultValue: []});
+
 
 // This is a hard-coded list, normally you’d proably use
 // local storage (store) and/or persistant cookies 
@@ -26,7 +19,8 @@ app.controller('videoCtrl', function($scope)
             }
         } 
     }   
-$scope.addRating = function(rating, video){
+    
+    $scope.addRating = function(rating, video){
         var ratingCount = 0;
         video.rating.push(rating);
         for(j in video.rating){
@@ -36,13 +30,10 @@ $scope.addRating = function(rating, video){
         video.ratingSum = Math.round(ratingCount);         
     }
 
-
-
     $scope.addVideoToLibrary = function(){
         var video = {"id": $scope.videoId, "title":$scope.videoTitle, "rating": [], "ratingSum": 0, "category": $scope.videoCategory, "comments":[],done:false};
         $scope.videos.push(video);
-        $scope.saveLocalStorage();
-        }
+    };
 
     $scope.getVideo = function(videoId){
         for (j in $scope.videos){
@@ -64,11 +55,5 @@ $scope.addRating = function(rating, video){
         video.comments.splice(index,1);
    }
 
-$scope.videos=[
-    // {"id": 'OX4UCZHDbzk', "title": 'Locka med strumpor', "rating": [], "ratingSum": 0, "category": "socks", "comments": [], done: false},
-    // {"id": 'FFxnhnEe3CY', "title": 'How not to locka haret', "rating": [],"ratingSum": 0, "category": "fail", "comments": [], done:false},
-    // {"id": 's9g4krSCYVM', "title": 'Locka med plattang', "rating": [],"ratingSum": 0, "category": "nice", "comments": [], done:false}
-
-];
 
 });
