@@ -4,20 +4,14 @@ app.controller('videoCtrl', function($scope)
 
 // This is a hard-coded list, normally you’d proably use
 // local storage (store) and/or persistant cookies 
-    $scope.videoList = [];
-    $scope.addVideo = function() 
-        {
-        $scope.videoList.push({videoText:$scope.videoInput, done:false});
-        $scope.videoInput = ""; //empty the input
-        };
 
-    $scope.removeVideo = function() 
+    $scope.removeVideo = function(video) 
         {
-        var oldList = $scope.videoList;
-        $scope.videoList = [];
+        var oldList = $scope.videos;
+        $scope.videos = [];
         angular.forEach(oldList, function(x) 
             {
-            if (!x.done) $scope.videoList.push(x);
+            if (!x == video) $scope.videos.push(x);
             });
         };
 
@@ -40,10 +34,10 @@ $scope.addRating = function(rating, video){
 
 
 
-    // $scope.addVideoToLibrary = function(videoId, videoTitle, videoCategory){
-    //     var video = {"id": videoId, "title":videoTitle, "rating": [], "ratingSum": 0, "category": videoCategory, "comments":[]};
-    //     $scope.video.push(video);
-    // }
+    $scope.addVideoToLibrary = function(){
+        var video = {"id": $scope.videoId, "title":$scope.videoTitle, "rating": [], "ratingSum": 0, "category": $scope.videoCategory, "comments":[],done:false};
+        $scope.video.push(video);
+    }
 
     $scope.getVideo = function(videoId){
         for (j in $scope.videos){
@@ -66,9 +60,9 @@ $scope.addRating = function(rating, video){
    }
 
 $scope.videos=[
-    {"id": 'OX4UCZHDbzk', "title": 'Locka med strumpor', "rating": [], "ratingSum": 0, "category": "strumpor", "comments": []},
-    {"id": 'FFxnhnEe3CY', "title": 'How not to locka haret', "rating": [],"ratingSum": 0, "category": "fail", "comments": []},
-    {"id": 's9g4krSCYVM', "title": 'Locka med plattang', "rating": [],"ratingSum": 0, "category": "perfekt", "comments": []}
+    {"id": 'OX4UCZHDbzk', "title": 'Locka med strumpor', "rating": [], "ratingSum": 0, "category": "strumpor", "comments": [], done: false},
+    {"id": 'FFxnhnEe3CY', "title": 'How not to locka haret', "rating": [],"ratingSum": 0, "category": "fail", "comments": [], done:false},
+    {"id": 's9g4krSCYVM', "title": 'Locka med plattang', "rating": [],"ratingSum": 0, "category": "perfekt", "comments": [], done:false}
 
 ];
 
