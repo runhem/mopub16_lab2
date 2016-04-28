@@ -30,13 +30,14 @@
 	<!--form to add new entires -->
 		<div id="adding" class="col-md-12 col-xs-12">
 			<form ng-submit="addVideoToLibrary()">
-			    <input class="input" type="text" ng-model="videoId" size="50" placeholder="Enter ID">
-			    <input class="input" type="text" ng-model="videoTitle" size="50" placeholder="Enter Title">
-			    <select name="category" value="Category" ng-model="videoCategory">
+			   <div class="col-md-12"> <input class="input" type="text" ng-model="videoId" size="50" placeholder="Enter ID"></div>
+			   <div class="col-md-12"><input class="input" type="text" ng-model="videoTitle" size="50" placeholder="Enter Title"></div>
+			   <div class="col-md-12"> <select class="dropdown" name="category" value="Category" ng-model="videoCategory">
 				  <option value="socks">With socks</option>
 				  <option value="fail">Epic fail</option>
 				  <option value="normal">Nice</option>
 				</select>
+				</div>
 			    <input type="submit" class="btn" value="Add New">
 			</form>
 		</div>
@@ -48,8 +49,13 @@
 		<div class="bigVideos col-md-12 col-xs-12" ng-repeat="video in videos">	
 
 				<div class="col-xs-12">
-				<div class="row"><h4>{{video.title}}</h4>
-				<button type="button" class="btn" ng-click="removeVideo($index,video)"> X </button></div></div>
+					<div class="row">
+					<h4>
+						<button type="button" class="btn" id="remove" ng-click="removeVideo($index,video)"><p>X</p></button> {{video.title}}</h4>
+					
+					</div>
+				</div>
+				
 				<h5>Category: {{video.category}}</h5>
 				<p>Rating: {{video.ratingSum}}</p>
 				<youtube-video video-id="video.id" style="width:auto;height:auto;"></youtube-video>
@@ -82,4 +88,4 @@
 
 	</div>
 </body>
-</html> 
+</html> 		
